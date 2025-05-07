@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "BSD 2-Clause Licence"
+
+[[mods]]
+modId = "classic_computers"
+version = "${version}"
+displayName = "Classic Computers"
+authors = "cinder"
+description = '''
+Classic Computers in your favorite Block Game!
+'''
+#logoFile = ""
+
+[[dependencies.classic_computers]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.classic_computers]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.classic_computers]]
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "classic_computers.mixins.json"
