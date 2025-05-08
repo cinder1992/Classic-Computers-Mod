@@ -9,14 +9,18 @@ import dev.titanite.retrocompy.ClassicComputers;
 
 import org.lwjgl.glfw.GLFW;
 
-public class Loader {
+import java.util.ArrayList;
+
+public class ImGuiStateHandler {
     private static final ImGuiImplGlfw imGlfw = new ImGuiImplGlfw();
     private static final ImGuiImplGl3 imGl3 = new ImGuiImplGl3();
+    private static final ArrayList<ImGuiRenderable> rlist = new ArrayList<>();
+    private static final Object mutex = new Object();
     private static long windowHandle;
-    private static boolean initd = false;
+    private static boolean show = false;
 
     public static void onGLFWInit(long window) {
-        ClassicComputers.LOGGER.info("ClassicComputers GLFW hook creating context");
+        ClassicComputers.LOGGER.debug("ClassicComputers GLFW mixin creating ImGui Context");
         ImGui.createContext();
 
         final ImGuiIO io = ImGui.getIO();
@@ -48,17 +52,18 @@ public class Loader {
         imGlfw.init(window, true);
         imGl3.init();
         windowHandle = window;
-        initd = true;
+        show = true;
     }
 
     public static void onFrameRender() {
-        if(!initd) return; //Break out early to prevent attempting to render without initializing!
-        imGl3.newFrame();
+        if(!show) return; //Break out early to prevent attempting to render without initializing!
         imGlfw.newFrame();
         ImGui.newFrame();
-
-        ClassicComputers.imgui();
-
+        synchronized (mutex) {
+            for (ImGuiRenderable im : rlist) {
+                im.imgui();
+            }
+        }
         endFrame(windowHandle);
     }
 
@@ -74,6 +79,21 @@ public class Loader {
             ImGui.updatePlatformWindows();
             ImGui.renderPlatformWindowsDefault();
             GLFW.glfwMakeContextCurrent(backupCurrentContext);
+        }
+    }
+
+    public static boolean add(ImGuiRenderable im) {
+        synchronized (mutex) {
+            if (rlist.contains(im)) return false;
+            rlist.add(im);
+        }
+        return true;
+    }
+
+    public static void remove(ImGuiRenderable im) {
+        synchronized (mutex) {
+            if (!rlist.contains(im)) return;
+            rlist.remove(im);
         }
     }
 }

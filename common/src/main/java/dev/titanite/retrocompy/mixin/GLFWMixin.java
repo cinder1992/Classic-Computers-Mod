@@ -1,6 +1,6 @@
 package dev.titanite.retrocompy.mixin;
 
-import dev.titanite.retrocompy.imgui.Loader;
+import dev.titanite.retrocompy.imgui.ImGuiStateHandler;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,8 +13,6 @@ import com.mojang.blaze3d.platform.WindowEventHandler;
 import com.mojang.blaze3d.platform.Window;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.awt.event.WindowEvent;
-
 @Mixin(Window.class)
 public class GLFWMixin {
     @Shadow  @Final private long window;
@@ -26,7 +24,7 @@ public class GLFWMixin {
                             String string,
                             String string2,
                             CallbackInfo ci) {
-        Loader.onGLFWInit(window);
+        ImGuiStateHandler.onGLFWInit(window);
     }
 
 }
