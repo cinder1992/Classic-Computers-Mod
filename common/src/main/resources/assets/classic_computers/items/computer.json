@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "classic_computers:block/computer"
+    "model": "classic_computers:item/computer"
   }
 }

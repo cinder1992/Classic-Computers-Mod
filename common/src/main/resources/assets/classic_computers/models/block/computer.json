@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "classic_computers:block/computer.png"
+    "all": "classic_computers:block/computer"
   }
 }
