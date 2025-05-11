@@ -24,6 +24,7 @@ subprojects {
     }
 
     repositories {
+        mavenCentral()
         // Add repositories to retrieve artifacts from in here.
         // You should only use this when depending on other mods because
         // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -57,6 +58,8 @@ subprojects {
         include "io.github.spair:imgui-java-natives-linux:$rootProject.imgui_version"
         include "io.github.spair:imgui-java-natives-macos:$rootProject.imgui_version"
 
+        // https://mvnrepository.com/artifact/com.codingrodent.microprocessor/Z80Processor
+        implementation 'com.codingrodent.microprocessor:Z80Processor:4.2.0'
     }
 
     java {

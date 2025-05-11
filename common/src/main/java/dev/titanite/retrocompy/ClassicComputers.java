@@ -1,6 +1,7 @@
 package dev.titanite.retrocompy;
 
 import dev.titanite.retrocompy.blocks.ClassicComputersBlocks;
+import dev.titanite.retrocompy.blocks.entities.ClassicComputersBlockEntities;
 import dev.titanite.retrocompy.items.ClassicComputersItems;
 import dev.titanite.retrocompy.tabs.ClassicComputersCreativeTab;
 import net.minecraft.client.Minecraft;
@@ -17,5 +18,6 @@ public final class ClassicComputers {
         ClassicComputersBlocks.init();
         ClassicComputersCreativeTab.init();
         ClassicComputersItems.init();
+        ClassicComputersBlockEntities.init();
     }
 }

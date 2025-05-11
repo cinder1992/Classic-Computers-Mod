@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "classic_computers:block/computer" }
+    "facing=east": { "model": "classic_computers:block/computer", "y": 90 },
+    "facing=north": { "model": "classic_computers:block/computer" },
+    "facing=west": { "model": "classic_computers:block/computer", "y": 180 },
+    "facing=south": { "model": "classic_computers:block/computer", "y": 270 }
   }
 }
